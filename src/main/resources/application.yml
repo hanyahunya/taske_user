@@ -1,5 +1,5 @@
 server:
-  port: 8083
+  port: 8080
 
 spring:
   application:
@@ -11,15 +11,21 @@ spring:
     url: ${TASKE_USER_DB_URL}
     username: ${TASKE_USER_DB_USERNAME}
     password: ${TASKE_USER_DB_PASSWORD}
+#  jpa:
+#    database-platform: org.hibernate.dialect.MySQL8Dialect
+#    hibernate:
+#      ddl-auto: update
+#    generate-ddl: true
+#    show-sql: false
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: update
-    generate-ddl: true
+      ddl-auto: none
+    generate-ddl: false
     show-sql: false
   # kafka
   kafka:
-    bootstrap-servers: localhost:29092
+    bootstrap-servers: ${KAFKA_HOST}:${KAFKA_PORT}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
